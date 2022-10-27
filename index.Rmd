@@ -118,10 +118,10 @@ xaringanExtra::use_logo(
 
 .pull-left[
 
-### Part 1: SAR basics
+### Part 1: SAR fundamentals 
 
 
-### Part 2: SAR applications
+### Part 2: Practical change detection with SAR 
 
 ]
 
@@ -753,7 +753,7 @@ There are a few ways to do this....
 
 In practical 1 we briefly considered a t-test for comparing the difference between Sentinel and Landsat data:
 
-Here we can apply similar logic to test for changes between images....
+Here we can apply similar logic to test for changes between image **collections**....
 
 $t = \frac{\overline{x1}-\overline{x2}}{\sqrt(S^2(\frac{1}{n1}+\frac{1}{n2}))}$
 
@@ -771,9 +771,44 @@ Where:
 # Identifying change...statistical tests
 
 
-Mort Canty one
+.pull-left[
+However, a **possible** problem here is that the t-test assume a normal distribution
+
+* In the SAR tutorials on [GEE by Mort Canty](https://developers.google.com/earth-engine/tutorials/community/detecting-changes-in-sentinel-1-imagery-pt-1) it suggested that the distribution of SAR data follows a gamma distribution.This means that it is skewed...**however**...
+
+* Andy Field states the normal distribution refers to the difference image not the original images (before and after). In the tutorial by Canty this is done on the ratio image...
+
+* Nevertheless Canty goes on to demonstrate a continuous change detection algorithm for SAR...which can detect dates for changes in the values.
+]
+
+.pull-right[
+
+```{r echo=FALSE, out.width='100%', fig.align='center'}
+knitr::include_graphics('img/mort_canty_gamma.png')
+```
+
+.small[Histogram of an single SAR image. Detecting Changes in Sentinel-1 Imagery (Part 1). Source:[Canty 2022](https://developers.google.com/earth-engine/tutorials/community/detecting-changes-in-sentinel-1-imagery-pt-1)]
+
+]
 
 ---
+
+class: inverse, center, middle
+
+## But do we need that level of complexity ?
+
+--
+
+### Consider an event and a complete image collection (just all the images for the year of the event)
+
+### If change has occured in a pixel we'd expect much higher standard deviation (over time)
+
+###If no change has occured lower standard deviation 
+
+### We can pick (threshold) the pixels that have changed....
+
+---
+
 
 # Identifying change...image fusion
 
@@ -943,11 +978,50 @@ knitr::include_graphics('img/multitemporal colour composite SAR image.png')
 >However, the lack of freely available SAR data that temporally coincides with other satellite imagery (e.g. Landsat) frequently precludes extensive use
 
 ---
+ 
+# Summary 1
 
-# Summary
+* SAR is an active sensor 
 
+* Records the **amplitude** (backscatter) and **phase** data (location of the wave cycle)
 
+* Consider: 
+  * polarization (e.g. VV = surface roughness)
+  * Permativity (dielectric constant) - how **reflective** is the property which means **reflective back to the     sensor**. Water usually reflects it off elsewhere
+  * Wavelength (or band)
 
+* In GEE we **just have amplitude (backscatter)** not phase
+
+* Data comes in three units
+  * power scale (RAW SAR) = statistics
+  * amplitude = visualisation 
+  * dB scale = seeing differences (default in GEE)
+
+---
+
+# Summary 2
+
+* SAR is very useful as it can **see through clouds** unlike optical sensors (e.g. Landsat) 
+
+* But how can it be useful in our analysis?
+  
+  * Change between two images (e.g. ratio or log ratios)
+  
+But this doesn't use the high temporal nature of it!
+
+We can see the variance over time through:
+  
+  * t-tests
+  
+  * standard deviation
+  
+Or we can fuse our SAR data to optical data
+
+  * Principal component analysis
+  
+  * Object based image analysis
+  
+  * Intensity fusion
 
 ---
 
@@ -957,6 +1031,4 @@ Section 1 and 2: https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-21
 
 Mainly up to page 354. https://www.tandfonline.com/doi/pdf/10.2747/1548-1603.48.3.345?needAccess=true
 
----
 
-# Task
