@@ -1024,11 +1024,3 @@ Or we can fuse our SAR data to optical data
   * Intensity fusion
 
 ---
-
-# Reading
-
-Section 1 and 2: https://besjournals.onlinelibrary.wiley.com/doi/10.1111/2041-210X.12942
-
-Mainly up to page 354. https://www.tandfonline.com/doi/pdf/10.2747/1548-1603.48.3.345?needAccess=true
-
-
