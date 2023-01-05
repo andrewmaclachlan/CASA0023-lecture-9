@@ -471,7 +471,7 @@ Values can be stored in power, amplitude or dB....
 
 .pull-right[
 ```{r echo=FALSE, out.width='100%', fig.align='center'}
-  knitr::include_graphics('img/product-tree-all.png')
+  knitr::include_graphics('img/product_tree.png')
 ```
 
 .small[The Tree of Processing Options. Source:[ICEYE](https://iceye-ltd.github.io/product-documentation/5.0/productFormats/introduction/)
