@@ -171,6 +171,17 @@ Sensors can be mounted on any platform.
 
 
 ---
+
+# Bat-like
+
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('img/echolocation.jpg')
+```
+.small[Source: [ASU](https://askabiologist.asu.edu/echolocation)]
+
+
+
+---
 class: inverse, center, middle
 
 # Now some of the lecture 4 slides...and a few extras
